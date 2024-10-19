@@ -6,7 +6,7 @@ const indexRouter = require("./routes/index");
 require("dotenv").config();
 const app = express();
 const MONGODB_URI_PROD = process.env.MONGODB_URI_PROD;
-
+console.log("mongodb uri", MONGODB_URI_PROD);
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/api", indexRouter);
@@ -21,6 +21,6 @@ mongoose
     console.log("DB connection fail", err);
   });
 
-app.listen(5000, () => {
-  console.log("server on 5000");
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`Server running on port ${process.env.PORT || 5000}`);
 });
