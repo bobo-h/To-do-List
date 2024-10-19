@@ -5,10 +5,15 @@ const bodyParser = require("body-parser");
 const indexRouter = require("./routes/index");
 require("dotenv").config();
 const app = express();
+const corsOptions = {
+  origin: "https://to-do-list-1st.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 const MONGODB_URI_PROD = process.env.MONGODB_URI_PROD;
 console.log("mongodb uri", MONGODB_URI_PROD);
 app.use(bodyParser.json());
-app.use(cors());
 app.use("/api", indexRouter);
 const mongoURI = MONGODB_URI_PROD;
 
