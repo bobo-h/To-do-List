@@ -43,7 +43,7 @@ userController.loginWithEmail = async (req, res) => {
     }
     throw new Error("이메일 또는 비밀번호를 다시 확인해주세요");
   } catch (error) {
-    res.status(400).json({ status: "fail", error });
+    res.status(400).json({ status: "fail", message: error.message });
   }
 };
 
