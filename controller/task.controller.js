@@ -5,7 +5,8 @@ const taskController = {};
 taskController.createTask = async (req, res) => {
   try {
     const { task, isComplete } = req.body;
-    const newTask = new Task({ task, isComplete });
+    const { userId } = req;
+    const newTask = new Task({ task, isComplete, author: userId });
     await newTask.save();
 
     const taskResponse = newTask.toObject();
